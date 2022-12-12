@@ -7,3 +7,7 @@ hooks files must be executable
 ```
 chmod +x prepare-commit-msg
 ```
+
+To use global hook scripts place them all outside of your repositories and then point Git at this new folder.
+
+$ git config --global core.hooksPath /path/to/global/hooks
