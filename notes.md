@@ -6,6 +6,7 @@ post-receive: Push the code to production.
 hooks files must be executable
 ```
 chmod +x prepare-commit-msg
+chmod a+x ~/.git-templates/hooks/prepare-commit-msg
 ```
 
 To use global hook scripts place them all outside of your repositories and then point Git at this new folder.
