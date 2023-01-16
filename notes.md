@@ -13,3 +13,5 @@ git config --edit --global # view your Git global config
 ```
 
 __Note:__ All files in the `hook_example` directory is what I used in the [tutorial video](https://youtu.be/ny0xLzhvADk). If you want to test them, you need to replace them with your repository Git hooks in `.git/hook`
+
+> Look into other branches for more examples through video
