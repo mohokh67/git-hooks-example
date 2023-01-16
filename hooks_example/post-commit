@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# The post-commit hook is called immediately after the commit-msg hook. It can’t change the outcome of the git commit operation, so it’s used primarily for notification purposes.
+
+echo "4------------post-commit hook"
+
+echo "Let's notify someone"

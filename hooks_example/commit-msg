@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# The commit-msg hook is much like the prepare-commit-msg hook, but it’s called after the user enters a commit message. This is an appropriate place to warn developers that their message doesn’t adhere to your team’s standards.
+
+echo "3------------commit-msg hook"
+echo "arg: $1"
+
+INPUT_FILE=$1
+START_LINE=$(head -n1 $INPUT_FILE)
+echo "first line: $START_LINE"
+
+BRANCH_NAME=$(git branch --show-current)
+TICKET_NUMBER=${BRANCH_NAME:0:7}
+
+if ! [[ "$START_LINE" == *"$TICKET_NUMBER:"* ]]; then
+  echo "Bad commit message, see example: BEST123: commit message"
+  exit 1
+fi

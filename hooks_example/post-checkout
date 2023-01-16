@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# The post-commit hook is called immediately after the commit-msg hook. It can’t change the outcome of the git commit operation, so it’s used primarily for notification purposes.
+
+echo "========================= post-checkout hook"
+
+PREVIOUS_HEAD=$1
+NEW_HEAD=$2
+CHECKOUT_TYPE=$3
+
+echo "Previous head: $PREVIOUS_HEAD"
+echo "New head: $NEW_HEAD"
+echo "Checkout type: $CHECKOUT_TYPE"
+
+if [ "$CHECKOUT_TYPE" == 0 ]; then
+  echo "post-checkout: This is a file checkout. Nothing to do."
+  exit 0
+else
+  echo "post-checkout: this is a branch checkoutlet's do something useful"
+  echo "let's build the project again..."
+fi

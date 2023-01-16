@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.
+
+# The pre-commit script is executed every time you run git commit before Git asks the developer for a commit message or generates a commit object. You can use this hook to inspect the snapshot that is about to be committed. For example, you may want to run some automated tests that make sure the commit doesn’t break any existing functionality.
+
+# No arguments are passed to the pre-commit script, and exiting with a non-zero status aborts the entire commit
+
+echo "========================= pre-commit hook"
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ "$BRANCH" == "main" ]]; then
+  echo 'you can not commit to "main" branch directly'
+  exit 1
+fi
+
+node hooks/pre-commit.js

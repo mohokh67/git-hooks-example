@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# The prepare-commit-msg hook is called after the pre-commit hook to populate the text editor with a commit message. This is a good place to alter the automatically generated commit messages for squashed or merged commits.
+
+echo "========================= prepre-commit-msg hook"
+
+# echo "# Please include a useful commit message!" > $1
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+echo "COMMIT_MSG_FILE"
+echo "$COMMIT_MSG_FILE"
+echo "COMMIT_SOURCE:"
+echo "$COMMIT_SOURCE"
+echo "SHA1:"
+echo "$SHA1"
+
+BRANCH_NAME=$(git branch --show-current)
+echo "Brnach name: $BRANCH_NAME"
+TICKET_NUMBER=${BRANCH_NAME:0:7}
+
+git interpret-trailers --in-place --trailer "$TICKET_NUMBER" "$COMMIT_MSG_FILE"
+if test -z "$COMMIT_SOURCE"; then
+  /usr/bin/perl -i.bak -pe 'print "\n" if !$first_line++' "$COMMIT_MSG_FILE"
+fi
